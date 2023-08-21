@@ -101,25 +101,28 @@ function dropNeutral(e){
 
 function updateAreas(){
 
-    document.querySelector('.area').forEach(item => {
+    document.querySelectorAll('.area').forEach(item => {
 
         let name = item.getAttribute('data-name')
 
         if(item.querySelector(".item") !== null){
-            item[name] = item.querySelector('item').innerHTML;
+            areas[name] = item.querySelector('.item').innerHTML;
         }else{
-            item[name] = null
+            areas[name] = null;
         }
     });
 
-    if(item.a === '1' && item.b === '2' && item.c === '3'){
+    if(areas.a === '1' && areas.b === '2' && areas.c === '3'){
 
-        document.querySelector(".areas").classList.add('correct')
+        document.querySelector('.areas').classList.remove('incorrect');
+        document.querySelector('.areas').classList.add('correct');
 
-    } else{
+    }else if(areas.a === null && areas.b === null && areas.c === null){
 
-        document.querySelector('.areas').classList.remove('correct')
+        document.querySelector('.areas').classList.remove('incorrect');
+        document.querySelector('.areas').classList.remove('correct');
 
+    }else{
+        document.querySelector('.areas').classList.add('incorrect');
     }
-
 }
