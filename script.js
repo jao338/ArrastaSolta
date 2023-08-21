@@ -1,3 +1,9 @@
+let areas = {
+    a: null,
+    b: null,
+    c: null
+}
+
 document.querySelectorAll('.item').forEach(item => {
 
     item.addEventListener('dragstart', dragStart)
@@ -59,6 +65,7 @@ function drop(e){
     if(e.currentTarget.querySelector('.item') === null){
 
         e.currentTarget.appendChild(dragItem);
+        updateAreas();
 
     }
 
@@ -86,5 +93,33 @@ function dropNeutral(e){
     let dragItem = document.querySelector('.item.dragging');
 
     e.currentTarget.appendChild(dragItem);
+
+    updateAreas();
+}
+
+// Logic Functions
+
+function updateAreas(){
+
+    document.querySelector('.area').forEach(item => {
+
+        let name = item.getAttribute('data-name')
+
+        if(item.querySelector(".item") !== null){
+            item[name] = item.querySelector('item').innerHTML;
+        }else{
+            item[name] = null
+        }
+    });
+
+    if(item.a === '1' && item.b === '2' && item.c === '3'){
+
+        document.querySelector(".areas").classList.add('correct')
+
+    } else{
+
+        document.querySelector('.areas').classList.remove('correct')
+
+    }
 
 }
